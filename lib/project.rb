@@ -8,7 +8,7 @@ class Project
     @id = attributes.fetch(:id)
   end
 
-  def self.list_all
+  def self.all
     return_projects = DB.exec('SELECT * FROM projects')
     projects = []
     return_projects.each() do |project|
@@ -18,5 +18,11 @@ class Project
     end
     projects
   end
+
+  def save
+    result = DB.exec("INSERT INTO projects (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first().fetch("id").to_i
+  end
+
   
 end 
