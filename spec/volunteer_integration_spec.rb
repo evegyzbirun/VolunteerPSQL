@@ -25,7 +25,7 @@ describe 'the project update path', {:type => :feature} do
   it 'allows a user to change the name of the project' do
     test_project = Project.new({:name => 'Teaching Kids to Code', :id => nil})
     test_project.save
-    visit "/projects/#{id}/edit"
+    visit "/projects"
     click_link('Teaching Kids to Code')
     click_link('Edit Project')
     fill_in('name', :with => 'Teaching Ruby to Kids')

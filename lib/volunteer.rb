@@ -46,10 +46,15 @@ class Volunteer
     end
   end
 
-  def update(name, project_id)
+  # def update(name, project_id)
+  #   @name = name
+  #   @project_id = project_id
+  #   DB.exec("UPDATE volunteers SET name = '#{@name}', project_id = #{@project_id} WHERE id = #{@id};")
+  # end
+
+  def update(name)
     @name = name
-    @project_id = project_id
-    DB.exec("UPDATE volunteers SET name = '#{@name}', project_id = #{@project_id} WHERE id = #{@id};")
+    DB.exec("UPDATE volunteers SET name = '#{@name}' WHERE project_id = #{@project_id}, id = #{id};")
   end
 
   def delete

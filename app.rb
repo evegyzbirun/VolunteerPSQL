@@ -15,7 +15,11 @@ get('/') do
 end
 
 get('/projects') do
-  @projects = Project.all
+  if params["search"]
+    @projects = Project.all(params[:search])
+  else
+    @projects = Project.all
+end
   erb(:projects)
 end
 
@@ -42,8 +46,9 @@ end
 
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i())
-  @project.update({params[:name] => name, :id => nil})
-  redirect to('/projects')
+  @project.update(params[:name])
+  @projects = Project.all
+  erb(:project)
 end
 
 delete('/projects/:id') do
