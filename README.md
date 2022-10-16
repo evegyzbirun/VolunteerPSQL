@@ -23,9 +23,10 @@
 2. open with Visual Studio Code.
 3. run(bundle)
 4. run $ gem install rspec from your terminal for tests
-5. run ruby app.rb to get live server run
-6. run (pg_ctl start) to start server or (pg_ctl stop) to stop server
-7. make sure you have psql database up
+5. run (pg_ctl start) for the Postgres server
+6. run ruby app.rb to get live server run
+7. run rspec if you want to run tests
+8. make sure you have psql database up
 
 
 
