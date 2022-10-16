@@ -11,3 +11,16 @@
   <% else %>
     <p>There are no volunteers listed for this project yet.</p>
   <% end %>
+
+  <h4>Add a volunteer:</h4>
+
+<form action="/projects/<%= @project.id %>/volunteers" method="post">
+  <div class="form-group">
+    <label for="volunteer_name">Volunteer name</label>
+    <input id="volunteer_name" name="volunteer_name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-success">Add a volunteer</button>
+</form>
+
+<p><a href="/projects/<%= @project.id %>/edit">Edit a project</a></p>
+<p><a href="/projects">Return to a project list</a></p>
