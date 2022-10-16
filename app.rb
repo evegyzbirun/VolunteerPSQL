@@ -7,7 +7,7 @@ require("pg")
 require ('dotenv/load')
 also_reload('lib/**/*.rb')
 
-DB = PG.connect({:dbname => "volunteer_tracker", :password => "epicodus"})
+DB = PG.connect({:dbname => "volunteer_tracker", :password => ENV['DATABASE_PASS']})
 
 get('/') do
   @projects = Project.all

@@ -11,7 +11,7 @@ DB = PG.connect({:dbname => 'volunteer_tracker_test'})
 Should be:
 
 ```ruby
-DB = PG.connect({dbname => 'volunteer_tracker_test', host: 'db', user: 'postgres', password: 'password' }})
+DB = PG.connect({dbname => 'volunteer_tracker_test', host: 'db', user: 'postgres', password: 'password' })
 ```
 
 Where you are changing the property values as necessary. 
