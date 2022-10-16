@@ -14,7 +14,7 @@ class Project
     return_projects.each() do |project|
       name = project.fetch("name")
       id = project.fetch("id").to_i
-      projects.push(Project.new({ name: name , id: id }))
+      projects.push(Project.new({:name => name, :id => id}))
     end
     projects
   end
@@ -39,10 +39,13 @@ class Project
     Project.new({:name => name, :id => id})
   end
 
+
   def update(name)
-    @name = name
-    DB.exec("UPDATE projects SET name = '#{@name}' WHERE id = #{id};")
+    @name = name.fetch(:name)
+    DB.exec("UPDATE projects SET name = '#{@name}' WHERE id = #{@id};")
   end
+
+ 
 
   def delete
     DB.exec("DELETE FROM projects WHERE id = #{@id};")

@@ -80,7 +80,8 @@ describe Project do
       project = Project.new({:name => 'Teaching Kids to Code', :id => nil})
       project.save
       project.update({:name => 'Teaching Ruby to Kids', :id => nil})
-      expect(project.name).to eq 'Teaching Ruby to Kids'
+      project1 = Project.all.first()
+      expect(project1.name).to eq 'Teaching Ruby to Kids'
     end
   end
 

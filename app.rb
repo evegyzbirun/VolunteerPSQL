@@ -46,8 +46,8 @@ end
 
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i())
-  @project.update(params[:name])
-  @projects = Project.all
+  @project.update({name: params[:name]})
+  @projects = Project.all()
   erb(:projects)
 end
 
