@@ -4,11 +4,10 @@ require('./lib/project')
 require('./lib/volunteer')
 require('pry')
 require("pg")
-
 require ('dotenv/load')
 also_reload('lib/**/*.rb')
 
-DB = PG.connect({:dbname => "volunteer_tracker", :password => ENV['DATABASE_PASS']})
+DB = PG.connect({:dbname => "volunteer_tracker", :password => "epicodus"})
 
 get('/') do
   @projects = Project.all
@@ -25,7 +24,7 @@ get('/projects/new') do
 end
 
 post('/projects') do
-  name = params[:project_name]
+  name = params[:name]
   project = Project.new({:name => name, :id => nil})
   project.save()
   redirect to('/projects')
@@ -43,7 +42,7 @@ end
 
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i())
-  @project.update(params[:name])
+  @project.update({params[:name] => name, :id => nil})
   redirect to('/projects')
 end
 
@@ -55,9 +54,14 @@ end
 
 #Volunteer
 
+get('/projects/:id/volunteers/:volunteer_id') do
+  @volunteer = Volunteer.find(params[:volunteer_id].to_i())
+  erb(:volunteer)
+end
+
 post('/projects/:id/volunteers') do
   @project = Project.find(params[:id].to_i())
-  volunteer = Volunteer.new({:name => params[:volunteer_name], :project_id => @project.id, :id => nil})
+  volunteer = Volunteer.new({:name => params[:name], :project_id => @project.id, :id => nil})
   volunteer.save()
   erb(:project)
 end
@@ -65,7 +69,7 @@ end
 patch('/projects/:id/volunteers/:volunteer_id') do
   @project = Project.find(params[:id].to_i())
   volunteer = Volunteer.find(params[:volunteer_id].to_i())
-  volunteer.update(params[:volunteer_name], @project.id)
+  volunteer.update(params[:name], @project.id)
   erb(:project)
 end
 
